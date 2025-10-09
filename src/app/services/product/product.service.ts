@@ -9,11 +9,15 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
   
-  getAllProducts() {
+  getCategory() {
     return this.http.get(Constant.API_END_POINT + Constant.METHODS.GET_ALL_CATAGORY);
   }
 
-  getCategory() {
-  return this.http.get(Constant.API_END_POINT + Constant.METHODS.GET_ALL_CATAGORY);
-}
+  getProducts() {
+    return this.http.get(Constant.API_END_POINT + Constant.METHODS.GET_ALL_PRODUCT);
+  }
+
+  saveProduct(orj: any) {
+     return this.http.post(Constant.API_END_POINT + Constant.METHODS.CREATE_PRODUCT, orj);
+  }
 }

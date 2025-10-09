@@ -27,17 +27,39 @@ export class ProductsComponent implements OnInit{
   }
 
   categoryList: any[] = [];
+  productsList: any[] = [];
 
   constructor( private productSrv: ProductService) {
     
   }
 
-  ngOnInit(): void{ }
+  ngOnInit(): void{
+    this.getAllCategory();
+    this.getProducts();
+   }
+  
+  getProducts() {
+    this.productSrv.getProducts().subscribe((res: any) => {
+      this.productsList = res.data;
+    })
+  }
   
   getAllCategory() {
     this.productSrv.getCategory().subscribe((res: any) => {
       this.categoryList = res.data;
     });
+  }
+
+  // Create New
+  onSave() {
+    this.productSrv.saveProduct(this.productObj).subscribe((res: any) => {
+      if (res.result) {
+        alert("Product Created")
+        this.getProducts();
+      } else {
+        alert(res.message)
+      }
+    })
   }
 
   //Method (Function inside a Class) when click new it open to create 

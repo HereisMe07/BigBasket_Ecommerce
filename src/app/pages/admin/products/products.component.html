@@ -13,9 +13,18 @@
 
       <div class="card-body">
         <!-- Flex container for product cards -->
-        <div class="d-flex gap-3 flex-wrap">
+        <div class="col-3" *ngFor="let product of productsList">
 
           <div class="card" style="width: 18rem;">
+            <img class="card-img-top" [src]="product.productImgeUrl" alt="Card image">
+            <div class="card-body">
+              <h4 class="card-title">{{product.productName}}</h4>
+              <p class="card-text">{{product.categoryName}}</p>
+              <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+          </div>
+
+          <!-- <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="img_avatar1.png" alt="Card image">
             <div class="card-body">
               <h4 class="card-title">John Doe</h4>
@@ -31,16 +40,7 @@
               <p class="card-text">Some example text.</p>
               <a href="#" class="btn btn-primary">See Profile</a>
             </div>
-          </div>
-
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="img_avatar1.png" alt="Card image">
-            <div class="card-body">
-              <h4 class="card-title">John Doe</h4>
-              <p class="card-text">Some example text.</p>
-              <a href="#" class="btn btn-primary">See Profile</a>
-            </div>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -101,11 +101,22 @@
             <label>Image URL</label>
             <input type="text" [(ngModel)]="productObj.imageUrl" class="form-control">
           </div>
+
           <div class="col-12">
             <label>Product Description</label>
             <textarea [(ngModel)]="productObj.description" class="form-control"></textarea>
           </div>
         </div>
+
+        <div class="row">
+            <div class="col-6">
+              <button class="btn btn-success">Reset</button>
+            </div>
+            <div class="col-6">
+              <button class="btn btn-success" (click)="onSave()">Create Product</button>
+            </div>
+        </div>
+
       </div>
     </div>
   </div>
